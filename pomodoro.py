@@ -13,32 +13,46 @@ def countdown(minutes):
 def user_input():
     while True:
         try:
-            minutes = int(input("Gib die Anzahl der Minuten ein (1-60): "))
+            minutes = int(input("Anzahl der Minuten (1-60): "))
             if 1 <= minutes <= 60:
                 return minutes
             else:
                 print("Bitte eine Zahl zwischen 1 und 60 eingeben.")
         except ValueError:
             print("Ungültige Eingabe. Bitte eine Zahl eingeben.")
-         
 
-print("Willkommen zum Pomodoro Timer!")
-print("Du wirst 4 Arbeitsphasen und 3 Pausenphasen durchlaufen.")
-print("Bitte gib die Dauer für Arbeits- und Pausenphasen ein.")
-arbeitszeit = user_input()
-print("Jetzt gib die Dauer für die Pausenphasen ein.")
-pausezeit = user_input()
+  
 
-print("Fokus beginnt jetzt, viel Erfolg!")
-countdown(arbeitszeit)
-print("Erste kurze Pause, entspann dich!")
-countdown(pausezeit)
-print("Zurück zur Arbeit, du schaffst das!")
-countdown(arbeitszeit)
-print("Zweite kurze Pause, tief durchatmen!")
-countdown(pausezeit)
-print("Letzte Arbeitsphase, gib alles!")
-countdown(arbeitszeit)
-print("Große Pause, genieße deine Zeit!")
-countdown(pausezeit)
-print("Pomodoro-Zyklus abgeschlossen! Gute Arbeit!")
+def user_abfrage():
+    print("Willkommen zum Pomodoro Timer!")
+
+    print("Wie viele Arbeitsphasen willst du durchlaufen?")
+    arbeitsphasen = user_input()
+
+    print("Wie viele Pausenphasen willst du einlegen?")
+    pausenphasen = user_input()
+
+    print("Bitte gib die Dauer für Arbeits- und Pausenphasen ein.")
+    arbeitszeit = user_input()
+    
+    print("Jetzt gib die Dauer für die Pausenphasen ein.")
+    pausezeit = user_input()
+    return arbeitszeit, pausezeit, arbeitsphasen, pausenphasen
+   
+def main():
+    arbeitszeit, pausezeit, arbeitsphasen, pausenphasen = user_abfrage()
+    
+    for i in range(arbeitsphasen):
+        print(f"\nArbeitsphase {i + 1} von {arbeitsphasen}")
+        countdown(arbeitszeit)
+        
+        if i < pausenphasen:
+            print(f"\nPausenphase {i + 1} von {pausenphasen}")
+            countdown(pausezeit)
+    
+    print("Alle Phasen abgeschlossen! Gut gemacht!")
+
+
+main()
+
+
