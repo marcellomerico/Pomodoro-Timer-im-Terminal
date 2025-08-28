@@ -8,12 +8,13 @@ def countdown(minutes):
         print(f"Verbleibende Zeit: {seconds // 60}:{seconds % 60:02d}", end='\r')
         time.sleep(1)
         seconds -= 1  
+    print("\a")  # System Bell
     print("\nZeit ist um!")
 
 def user_input():
     while True:
         try:
-            minutes = int(input("Anzahl der Minuten (1-60): "))
+            minutes = int(input("Bitte hier eingeben: "))
             if 1 <= minutes <= 60:
                 return minutes
             else:
