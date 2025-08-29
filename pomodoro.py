@@ -1,6 +1,7 @@
 
 # Pomodoro Timer mit 4 Arbeitsphasen und 3 Pausenphasen
 import time
+import subprocess
 
 def countdown(minutes):
     seconds = minutes * 60
@@ -8,8 +9,8 @@ def countdown(minutes):
         print(f"Verbleibende Zeit: {seconds // 60}:{seconds % 60:02d}", end='\r')
         time.sleep(1)
         seconds -= 1  
-    print("\a")  # System Bell
     print("\nZeit ist um!")
+    subprocess.call(["afplay", "alarm.wav"]) # Für MacOS, für Windows "start" und für Linux "aplay" verwenden
 
 def user_input():
     while True:
